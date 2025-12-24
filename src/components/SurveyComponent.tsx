@@ -29,6 +29,8 @@ const SurveyComponent: React.FC = () => {
         if (edad !== undefined && edad !== null && edad < 18) {
           options.allowChanging = false;
           alert('Gracias por tu interés. Esta encuesta está dirigida solo a personas mayores de 18 años.');
+          // Cambiar a mensaje de fallo de filtro
+          surveyModel.completedHtml = filteredOutHtml;
           sender.doComplete();
           return;
         }
@@ -39,6 +41,8 @@ const SurveyComponent: React.FC = () => {
           if (!empleadoValues.includes(situacion_laboral)) {
             options.allowChanging = false;
             alert('Gracias por tu tiempo. Esta encuesta aplica solo para personas empleadas tiempo completo o parcial.');
+            // Cambiar a mensaje de fallo de filtro
+            surveyModel.completedHtml = filteredOutHtml;
             sender.doComplete();
             return;
           }
@@ -90,14 +94,20 @@ const SurveyComponent: React.FC = () => {
   );
 };
 
+// Mensaje cuando la encuesta se completa exitosamente
+const completedHtmlSuccess = "<div style='text-align: center; padding: 40px 20px; font-family: Montserrat, sans-serif;'><h2 style='font-size: 36px; font-weight: 700; color: #fa345e; margin: 0 0 30px 0;'>¡Encuesta finalizada!</h2><h3 style='font-size: 24px; font-weight: 600; color: #1b1b1b; margin: 0 0 30px 0; line-height: 1.5;'>Muchas gracias por tus respuestas.<br/>Tu opinión es valiosa para nosotros y nos ayuda a crear mejores espacios de trabajo.</h3><p style='font-size: 16px; font-weight: 400; color: #1b1b1b; margin: 0 0 20px 0; line-height: 1.6;'>Pronto, enviaremos un premio en puntos <strong style='color: #fa345e;'>Apprecio</strong> a todos quienes llegaron hasta aquí. Estos puntos serán entregados al finalizar el período de respuestas el 31/01/2025.</p><p style='font-size: 16px; font-weight: 400; color: #1b1b1b; margin: 0 0 30px 0;'>Si aún no tienes la app, descargala aquí 👇</p><a href='https://embajadores.apprecio.com/es/descarga-la-app' style='display: inline-block; background-color: #fa345e; color: #ffffff; padding: 12px 32px; font-size: 16px; font-weight: 600; border-radius: 5px; text-decoration: none; border: 3px solid #1b1b1b; cursor: pointer;'>Descarga la app</a></div>";
+
+// Mensaje cuando la encuesta no cumple los filtros
+const filteredOutHtml = "<div style='text-align: center; padding: 40px 20px; font-family: Montserrat, sans-serif;'><h2 style='font-size: 36px; font-weight: 700; color: #fa345e; margin: 0 0 30px 0;'>¡Gracias por tu participación!</h2><h3 style='font-size: 24px; font-weight: 600; color: #1b1b1b; margin: 0 0 30px 0; line-height: 1.5;'>Pronto tendremos encuestas más adecuadas para ti.</h3></div>";
+
 const surveyConfig = {
-  title: "Encuesta de Motivación - Apprecio LATAM 2026",
+  title: "Encuesta de Motivación laboral 2026",
   showProgressBar: false,
   firstPageIsStarted: false,
   pagePrevText: "Anterior",
   pageNextText: "Siguiente",
   completeText: "Enviar Respuestas",
-  completedHtml: "<div style='text-align: center; padding: 40px 20px; font-family: Montserrat, sans-serif;'><h2 style='font-size: 36px; font-weight: 700; color: #fa345e; margin: 0 0 30px 0;'>¡Encuesta finalizada!</h2><h3 style='font-size: 24px; font-weight: 600; color: #1b1b1b; margin: 0 0 30px 0; line-height: 1.5;'>Muchas gracias por tus respuestas.<br/>Tu opinión es valiosa para nosotros y nos ayuda a crear mejores espacios de trabajo.</h3><p style='font-size: 16px; font-weight: 400; color: #1b1b1b; margin: 0 0 20px 0; line-height: 1.6;'>Pronto, enviaremos un premio en puntos <strong style='color: #fa345e;'>Apprecio</strong> a todos quienes llegaron hasta aquí. Estos puntos serán entregados al finalizar el período de respuestas el 31/01/2025.</p><p style='font-size: 16px; font-weight: 400; color: #1b1b1b; margin: 0 0 30px 0;'>Si aún no tienes la app, descargala aquí 👇</p><a href='https://embajadores.apprecio.com/es/descarga-la-app' style='display: inline-block; background-color: #fa345e; color: #ffffff; padding: 12px 32px; font-size: 16px; font-weight: 600; border-radius: 5px; text-decoration: none; border: 3px solid #1b1b1b; cursor: pointer;'>Descarga la app</a></div>",
+  completedHtml: completedHtmlSuccess,
   pages: [
     // PÁGINA 1: Introducción
     {
