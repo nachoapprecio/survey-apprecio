@@ -424,35 +424,6 @@
   background-color: var(--bg-hover);
 }
 
-/* Dropdown - Custom styling */
-:global(.sd-dropdown),
-:global(.sv_q_dropdown),
-:global(select) {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fa345e' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 12px;
-  padding-right: 2.5rem;
-  cursor: pointer;
-  /* Mobile optimizations */
-  font-size: 18px;
-}
-
-/* Custom dropdown class */
-:global(.custom-dropdown) {
-  font-size: 18px !important;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* Remove iOS fullscreen picker */
-:global(select option) {
-  padding: 8px;
-}
-
 /* Textarea */
 :global(textarea),
 :global(.sd-textarea) {

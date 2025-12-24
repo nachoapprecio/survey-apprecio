@@ -1,0 +1,30 @@
+<div id="app-{{ module.id }}"></div>
+
+<!-- Import de estilos -->
+<link rel="stylesheet" href="survey-core/defaultV2.css">
+<link rel="stylesheet" href="./survey-styles.css">
+
+<!-- Bundle con React + SurveyJS + App code -->
+<script src="./survey-bundle.min.js"></script>
+
+<script>
+  // Configuración del módulo desde fields.json
+  window.SurveyAppConfig = {
+    moduleId: '{{ module.id }}',
+    title: '{{ module.survey_title }}',
+    logoUrl: '{{ module.logo_url }}',
+    primaryColor: '{{ module.primary_color }}',
+    webhookUrl: '{{ module.webhook_url }}',
+    showProgress: {{ module.show_progress }},
+    buttonTexts: {
+      prev: '{{ module.button_prev_text }}',
+      next: '{{ module.button_next_text }}',
+      submit: '{{ module.button_submit_text }}'
+    }
+  };
+
+  // Renderizar la aplicación
+  if (window.SurveyApp && window.SurveyApp.initModule) {
+    window.SurveyApp.initModule('app-{{ module.id }}', window.SurveyAppConfig);
+  }
+</script>

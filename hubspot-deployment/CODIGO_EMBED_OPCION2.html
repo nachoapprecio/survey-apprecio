@@ -1,0 +1,135 @@
+<!-- 
+INSTRUCCIONES:
+1. Copia ESTE CÓDIGO COMPLETO
+2. Ve a tu landing en HubSpot
+3. Entra a Edit mode
+4. Agrega un módulo "Rich Text"
+5. Switch to "HTML" mode
+6. Pega este código
+7. Guarda y publica
+
+IMPORTANTE: Reemplaza https://survey-apprecio.pages.dev 
+con tu URL de Cloudflare Pages
+-->
+
+<div id="survey-container-apprecio" style="width: 100%; background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%); padding: 2rem 0; min-height: 100vh;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 1rem;">
+        <div style="background: white; border-radius: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); padding: 2rem;">
+            <div id="survey-inner"></div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS de SurveyJS -->
+<link rel="stylesheet" href="https://survey.tudominio.com/assets/survey-styles.css">
+
+<!-- Font Montserrat -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- SurveyJS Bundle -->
+<script src="https://survey.tudominio.com/assets/survey-bundle.min.js"></script>
+
+<script>
+(function() {
+    // Configuración de la encuesta
+    const surveyConfig = {
+        // WEBHOOK - Cambiar URL según entorno
+        webhookUrl: 'https://n8n.openip.cl/webhook/survey-ebook',
+        
+        // TEXTOS - Personalizar según necesidad
+        surveyTitle: 'Encuesta de Motivación Apprecio 2026',
+        logoUrl: 'https://estudios.apprecio.com/hubfs/logo-cobrand-ebook-provokers.png',
+        
+        // BRANDING - Cambiar colores primarios
+        primaryColor: '#FA345E',
+        primaryDark: '#1b1b1b',
+        primaryLight: '#fa5871',
+        
+        // COMPORTAMIENTO
+        showProgressBar: false,
+        autoScroll: true,
+        
+        // TEXTOS DE BOTONES
+        previousButtonText: 'Anterior',
+        nextButtonText: 'Siguiente',
+        submitButtonText: 'Enviar Respuestas'
+    };
+    
+    // Esperar a que el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSurvey);
+    } else {
+        initSurvey();
+    }
+    
+    function initSurvey() {
+        const container = document.getElementById('survey-inner');
+        if (!container) return;
+        
+        try {
+            // Verificar que el bundle se cargó
+            if (typeof window.initSurvey === 'function') {
+                window.initSurvey(container, surveyConfig);
+                console.log('✅ Encuesta cargada correctamente');
+            } else {
+                console.error('❌ SurveyJS bundle no se cargó');
+                container.innerHTML = '<p style="color: red;">Error al cargar la encuesta. Por favor, recarga la página.</p>';
+            }
+        } catch (error) {
+            console.error('Error inicializando encuesta:', error);
+            container.innerHTML = '<p style="color: red;">Error al cargar la encuesta: ' + error.message + '</p>';
+        }
+    }
+})();
+</script>
+
+<style>
+/* Estilos adicionales para HubSpot */
+#survey-container-apprecio .sd-root-modern {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 767px) {
+    #survey-container-apprecio {
+        padding: 1rem 0;
+    }
+    
+    #survey-container-apprecio .sd-root-modern {
+        padding: 1rem;
+    }
+}
+</style>
+
+<!-- 
+NOTAS DE CONFIGURACIÓN:
+
+1. WEBHOOK URL:
+   - Desarrollo: https://n8n.openip.cl/webhook/survey-ebook
+   - Cambiar a tu webhook si tienes otro
+
+2. COLORES:
+   - primaryColor: Color principal (#FA345E para Apprecio)
+   - primaryDark: Color oscuro para texto
+   - primaryLight: Color claro para hover
+
+3. TEXTOS:
+   - logoUrl: URL del logo (puede ser tu dominio)
+   - surveyTitle: Título mostrado en la encuesta
+   
+4. COMPORTAMIENTO:
+   - showProgressBar: false (sin barra de progreso)
+   - autoScroll: true (auto-scroll al cambiar página)
+
+5. EDITAR ENCUESTA:
+   - Cambiar preguntas en SurveyComponent.tsx
+   - Recompilar con npm run build
+   - Cloudflare auto-actualiza
+   - Landing se auto-actualiza (sin cambios)
+
+6. MONITOREO:
+   - Respuestas llegan a N8N webhook
+   - Ver en https://n8n.openip.cl
+   - Dashboard automático de respuestas
+-->
