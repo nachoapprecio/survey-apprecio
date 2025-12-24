@@ -6,6 +6,25 @@
     <meta name="description" content="Encuesta de Motivación Apprecio 2026" />
     <meta name="theme-color" content="#FA345E" />
     <title>Encuesta Apprecio | Provokers 2026</title>
+    <script>
+      // Prevenir fullscreen picker en iOS/Android
+      // Interceptar el focus en selects para mantener el dropdown nativo pero no expandido
+      document.addEventListener('DOMContentLoaded', function() {
+        const selects = document.querySelectorAll('select, [class*="dropdown"]');
+        selects.forEach(select => {
+          select.addEventListener('focus', function() {
+            // Prevenir que se abra el picker de sistema en iOS
+            // Permitir que iOS use su dropdown nativo pequeño
+            this.style.fontSize = '16px';
+          });
+        });
+      });
+      
+      // Alternativa: usar data attribute para identificar selects de encuesta
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        document.documentElement.style.setProperty('--dropdown-appearance', 'menulist');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
