@@ -1,4 +1,3 @@
-import React from 'react';
 import SurveyComponent from './components/SurveyComponent';
 import './App.css';
 
