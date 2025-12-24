@@ -3,22 +3,7 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "installCommand": "npm install",
-  "env": {
-    "VITE_WEBHOOK_URL": "@vite_webhook_url",
-    "VITE_SURVEY_TITLE": "@vite_survey_title"
-  },
   "regions": [
     "sfo1"
-  ],
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/index.html"
-    }
   ]
 }
