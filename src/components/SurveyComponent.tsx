@@ -26,6 +26,46 @@ const SurveyComponent: React.FC = () => {
           if (dropdown.popupModel) {
             // canShrink permite que el popup se ajuste al espacio y muestre scroll
             dropdown.popupModel.canShrink = true;
+            
+            // Habilitar recálculo de posición cuando hay zoom/gestos táctiles
+            let lastScale = (window as any).visualViewport?.scale || 1;
+            let recalculateTimer: any = null;
+            
+            const handleViewportChange = () => {
+              const currentScale = (window as any).visualViewport?.scale || 1;
+              // Solo recalcular si el zoom cambió significativamente
+              if (Math.abs(currentScale - lastScale) > 0.01) {
+                lastScale = currentScale;
+                // Debounce para evitar demasiados recalculos
+                clearTimeout(recalculateTimer);
+                recalculateTimer = setTimeout(() => {
+                  if (dropdown.popupModel && dropdown.popupModel.isVisible) {
+                    dropdown.popupModel.recalculatePosition(false);
+                  }
+                }, 100);
+              }
+            };
+            
+            // Suscribirse a cambios en el viewport cuando el popup se abre
+            const originalOnShow = dropdown.popupModel.onShow;
+            dropdown.popupModel.onShow = () => {
+              if ((window as any).visualViewport) {
+                (window as any).visualViewport.addEventListener('resize', handleViewportChange);
+                (window as any).visualViewport.addEventListener('scroll', handleViewportChange);
+              }
+              if (originalOnShow) originalOnShow();
+            };
+            
+            // Limpiar listeners cuando el popup se cierra
+            const originalOnHide = dropdown.popupModel.onHide;
+            dropdown.popupModel.onHide = () => {
+              if ((window as any).visualViewport) {
+                (window as any).visualViewport.removeEventListener('resize', handleViewportChange);
+                (window as any).visualViewport.removeEventListener('scroll', handleViewportChange);
+              }
+              clearTimeout(recalculateTimer);
+              if (originalOnHide) originalOnHide();
+            };
           }
         }
       });
