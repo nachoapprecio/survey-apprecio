@@ -1,0 +1,347 @@
+{
+  "survey": {
+    "id": "apprecio_latam_motivacion_2026_v2",
+    "language": "es",
+    "settings": {
+      "all_required_by_default": true
+    },
+    "flow": [
+      { "type": "section", "ref": "intro" },
+      { "type": "section", "ref": "filtro" },
+      { "type": "section", "ref": "pantalla_trabajo" },
+      { "type": "section", "ref": "motivacion" },
+      { "type": "end" }
+    ],
+    "sections": [
+      {
+        "id": "intro",
+        "title": "Introducción",
+        "blocks": [
+          {
+            "id": "INTRO_1",
+            "type": "screen",
+            "required": true,
+            "text": "Buenos días/tardes. En este momento Apprecio junto con Provokers estamos realizando un estudio/encuesta y quisiéramos conocer tu opinión. Recuerda que todas tus respuestas son anónimas y confidenciales."
+          }
+        ]
+      },
+      {
+        "id": "filtro",
+        "title": "Filtro demográfico",
+        "blocks": [
+          {
+            "id": "P0_EMAIL",
+            "type": "text_email",
+            "required": true,
+            "question": "Por favor compártenos tu Mail con el que manejas tu cuenta Apprecio"
+          },
+          {
+            "id": "F2_EDAD",
+            "type": "number",
+            "required": true,
+            "question": "¿Cuál es tu edad exacta?",
+            "validation": { "min": 1, "max": 99, "integer_only": true },
+            "logic": [
+              {
+                "if": { "lt": 18 },
+                "then": {
+                  "action": "terminate",
+                  "message": "Gracias por tu interés. Esta encuesta está dirigida solo a personas mayores de 18 años."
+                }
+              }
+            ]
+          },
+          {
+            "id": "F1_GENERO",
+            "type": "single_choice",
+            "required": true,
+            "question": "Por favor registra tu género a continuación:",
+            "programming": { "code": "RU" },
+            "options": [
+              { "label": "Mujer", "value": 1 },
+              { "label": "Hombre", "value": 2 },
+              { "label": "Otro", "value": 3 },
+              { "label": "Prefiero no responder", "value": 4 }
+            ]
+          },
+          {
+            "id": "F3_PAIS",
+            "type": "single_choice",
+            "required": true,
+            "question": "¿En qué país vives actualmente?",
+            "programming": { "code": "RU" },
+            "options": [
+              { "label": "Chile", "value": 1 },
+              { "label": "Colombia", "value": 2 },
+              { "label": "México", "value": 3 },
+              { "label": "Perú", "value": 4 }
+            ]
+          },
+          {
+            "id": "F4_SITUACION_LABORAL",
+            "type": "single_choice",
+            "required": true,
+            "question": "¿Cuál es tu situación laboral actual?",
+            "programming": {
+              "code": "RU",
+              "rule": "Continuar solo si respondió Empleado/a tiempo completo o a tiempo parcial"
+            },
+            "options": [
+              { "label": "Empleado/a tiempo completo", "value": 1, "continue": true },
+              { "label": "Empleado/a tiempo parcial", "value": 2, "continue": true },
+              { "label": "Trabajador/a independiente (freelance, autónomo/a)", "value": 3, "terminate": true },
+              { "label": "Dueño/a de un negocio o empresa", "value": 4, "terminate": true },
+              { "label": "Desempleado/a buscando trabajo", "value": 5, "terminate": true },
+              { "label": "Desempleado/a no buscando trabajo", "value": 6, "terminate": true },
+              { "label": "Estudiante", "value": 7, "terminate": true },
+              { "label": "Jubilado/a o pensionado/a", "value": 8, "terminate": true },
+              { "label": "Ama de casa / labores del hogar", "value": 9, "terminate": true }
+            ],
+            "logic": [
+              {
+                "if": { "in": [3, 4, 5, 6, 7, 8, 9] },
+                "then": { "action": "terminate", "message": "Gracias por tu tiempo. Esta encuesta aplica solo para personas empleadas tiempo completo o parcial." }
+              }
+            ]
+          },
+          {
+            "id": "F5_INDUSTRIA",
+            "type": "single_choice",
+            "required": true,
+            "question": "¿En cuál de las siguientes industrias trabajas actualmente?",
+            "programming": { "code": "RU" },
+            "options": [
+              { "label": "Agricultura / Agroindustria", "value": 1 },
+              { "label": "Alimentos y bebidas", "value": 2 },
+              { "label": "Banca y servicios financieros", "value": 3 },
+              { "label": "Comercio minorista / Retail", "value": 4 },
+              { "label": "Construcción / Infraestructura", "value": 5 },
+              { "label": "Educación", "value": 6 },
+              { "label": "Energía / Petróleo / Gas / Minería", "value": 7 },
+              { "label": "Entretenimiento / Medios", "value": 8 },
+              { "label": "Gobierno / Sector público", "value": 9 },
+              { "label": "Logística / Transporte", "value": 10 },
+              { "label": "Manufactura / Industria", "value": 11 },
+              { "label": "Salud / Servicios médicos", "value": 12 },
+              { "label": "Servicios profesionales (consultoría, contabilidad, legal, etc.)", "value": 13 },
+              { "label": "Tecnología / Software / Telecomunicaciones", "value": 14 },
+              { "label": "Turismo / Hotelería", "value": 15 },
+              { "label": "Otra", "value": 98 }
+            ]
+          },
+          {
+            "id": "F6_NIVEL",
+            "type": "single_choice",
+            "required": true,
+            "question": "¿Cuál es tu nivel de responsabilidad dentro de la empresa?",
+            "programming": { "code": "RU" },
+            "options": [
+              { "label": "Operativo / Asistente", "value": 1 },
+              { "label": "Profesional / Especialista / Analista", "value": 2 },
+              { "label": "Supervisor / Jefe de equipo", "value": 3 },
+              { "label": "Gerente / Subgerente", "value": 4 },
+              { "label": "Director / Gerencia Senior", "value": 5 },
+              { "label": "Alta dirección", "value": 6 },
+              { "label": "Otro", "value": 7 }
+            ]
+          },
+          {
+            "id": "F7_ANTIGUEDAD",
+            "type": "single_choice",
+            "required": true,
+            "question": "¿Cuánto tiempo llevas en tu empleo actual?",
+            "programming": { "code": "RU" },
+            "options": [
+              { "label": "Menos de 1 año", "value": 1 },
+              { "label": "De 1 a 3 años", "value": 2 },
+              { "label": "De 4 a 6 años", "value": 3 },
+              { "label": "De 7 a 10 años", "value": 4 },
+              { "label": "Más de 10 años", "value": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pantalla_trabajo",
+        "title": "Instrucción",
+        "blocks": [
+          {
+            "id": "SCREEN_WORK_1",
+            "type": "screen",
+            "required": true,
+            "programming": { "rule": "Pantalla independiente" },
+            "text": "A partir de este momento te haremos algunas preguntas sobre tu trabajo. Tómate el tiempo necesario para responderlas; no hay respuestas buenas o malas, solo tu experiencia."
+          }
+        ]
+      },
+      {
+        "id": "motivacion",
+        "title": "Estado de compromiso y motivación",
+        "blocks": [
+          {
+            "id": "P1_ENTUSIASMO",
+            "type": "likert_1_5",
+            "required": true,
+            "question": "¿Qué tan entusiasmado(a) te sientes al iniciar tu jornada laboral?",
+            "help": "Usa una escala de 1 a 5 donde 1 significa “Nada entusiasmado(a)” y 5 significa “Muy entusiasmado(a)”.",
+            "programming": { "code": "RU", "show_scale": true },
+            "labels": [
+              "Nada entusiasmado(a)",
+              "Poco entusiasmado(a)",
+              "Neutral / ni entusiasmado(a) ni no entusiasmado(a)",
+              "Entusiasmado(a)",
+              "Muy entusiasmado(a)"
+            ],
+            "values": [1, 2, 3, 4, 5]
+          },
+          {
+            "id": "P2_MINIMO",
+            "type": "single_choice",
+            "required": true,
+            "question": "¿Con qué frecuencia realizas únicamente lo necesario para cumplir con tus tareas en el trabajo?",
+            "programming": { "code": "RU", "show_scale": true },
+            "options": [
+              { "label": "Siempre", "value": 1 },
+              { "label": "A menudo", "value": 2 },
+              { "label": "A veces", "value": 3 },
+              { "label": "Rara vez", "value": 4 },
+              { "label": "Nunca", "value": 5 }
+            ]
+          },
+          {
+            "id": "P2A_ROTACION",
+            "type": "likert_1_5",
+            "required": true,
+            "question": "Pensando en los próximos 12 meses, ¿qué tan probable es que busques activamente otro trabajo?",
+            "programming": { "code": "RU", "show_scale": true },
+            "labels": ["Nada probable", "Poco probable", "Neutral", "Es probable", "Muy probable"],
+            "values": [1, 2, 3, 4, 5]
+          },
+          {
+            "id": "P3_CONEXION",
+            "type": "likert_1_5",
+            "required": true,
+            "question": "¿Qué tan emocionalmente conectado(a) te sientes con el propósito de la empresa donde trabajas?",
+            "programming": { "code": "RU", "show_scale": true },
+            "labels": ["Nada conectado(a)", "Poco conectado(a)", "Neutral", "Conectado(a)", "Muy conectado(a)"],
+            "values": [1, 2, 3, 4, 5]
+          },
+          {
+            "id": "P4_TOP3_RANKEADO",
+            "type": "ranked_multi_select",
+            "required": true,
+            "question": "¿Qué factores son los que más influyen en tu motivación laboral? Selecciona máximo 3 y ordénalos, donde 1 es el que más influye.",
+            "programming": {
+              "code": "RM",
+              "max": 3,
+              "ui": "drag_columns_1_to_3",
+              "rotate_options": true
+            },
+            "options": [
+              { "label": "Falta de reconocimiento", "value": 1 },
+              { "label": "Pocas oportunidades de crecimiento o desarrollo", "value": 2 },
+              { "label": "Baja flexibilidad (horarios, teletrabajo, permisos, etc.)", "value": 3 },
+              { "label": "Carga de trabajo / presión", "value": 4 },
+              { "label": "Relación con otras personas el equipo", "value": 5 },
+              { "label": "Salario y beneficios", "value": 6 },
+              { "label": "Ambiente laboral / clima organizacional", "value": 7 },
+              { "label": "Claridad en las metas y expectativas", "value": 8 },
+              { "label": "Balance entre vida personal y laboral", "value": 9 },
+              { "label": "Recursos y herramientas para hacer el trabajo", "value": 10 },
+              { "label": "Estilo de liderazgo de mi jefe", "value": 11 },
+              { "label": "Falta de feedback o retroalimentación", "value": 12 },
+              { "label": "Inseguridad laboral / miedo a perder el empleo", "value": 13 }
+            ]
+          },
+          {
+            "id": "P4A_AUTONOMIA",
+            "type": "likert_1_5",
+            "required": true,
+            "question": "De acuerdo con lo que vives en tu empresa, ¿sientes que cuentan con condiciones de flexibilidad y beneficios que apoyan tu experiencia laboral (por ejemplo: horarios flexibles, posibilidad de elegir beneficios y reconocimiento recurrente)?",
+            "programming": { "code": "RU", "show_scale": true },
+            "labels": [
+              "Totalmente en desacuerdo",
+              "En desacuerdo",
+              "Ni de acuerdo ni en desacuerdo",
+              "De acuerdo",
+              "Totalmente de acuerdo"
+            ],
+            "values": [1, 2, 3, 4, 5]
+          },
+          {
+            "id": "P5_IA_PERCEPCION",
+            "type": "likert_1_5",
+            "required": true,
+            "question": "En general ¿qué tan positiva es tu percepción sobre el uso de la inteligencia artificial?",
+            "help": "Usa una escala de 1 a 5, donde 1 es “Muy negativa” y 5 es “Muy positiva”.",
+            "programming": { "code": "RU", "show_scale": true },
+            "labels": ["Muy negativa", "Negativa", "Neutral", "Positiva", "Muy positiva"],
+            "values": [1, 2, 3, 4, 5]
+          },
+          {
+            "id": "P5A_IA_SENSACION",
+            "type": "single_choice",
+            "required": true,
+            "question": "Cuando piensas en el uso de IA en tu empresa, ¿qué sensación predomina más?",
+            "programming": { "code": "RU", "rotate_options": true },
+            "options": [
+              { "label": "Me ayuda a trabajar mejor", "value": 1 },
+              { "label": "Me ahorra tiempo en tareas repetitivas", "value": 2 },
+              { "label": "Me resulta indiferente", "value": 3 },
+              { "label": "Me genera desconfianza", "value": 4 },
+              { "label": "Me preocupa que reemplace personas", "value": 5 }
+            ]
+          },
+          {
+            "id": "P6_IA_DETECCION",
+            "type": "likert_1_5",
+            "required": true,
+            "question": "¿Qué tan dispuesto(a) estás a que tu empresa use herramientas de inteligencia artificial para identificar de manera temprana la desmotivación laboral?",
+            "programming": { "code": "RU", "show_scale": true },
+            "labels": ["Nada dispuesto(a)", "Poco dispuesto(a)", "Neutral", "Dispuesto(a)", "Muy dispuesto(a)"],
+            "values": [1, 2, 3, 4, 5]
+          },
+          {
+            "id": "P7_RANKING_2026",
+            "type": "ranking",
+            "required": true,
+            "question": "Pensando en el futuro, ¿en qué deberían enfocarse más las empresas para mejorar la experiencia de los colaboradores/trabajadores en 2026? Ordena de 1 a 5, donde 1 es lo más importante.",
+            "programming": { "rank_all": true, "rotate_options": true },
+            "options": [
+              { "label": "Cultura organizacional (valores, ambiente, forma de trabajar)", "value": 1 },
+              { "label": "Bienestar integral (salud física, mental, emocional)", "value": 2 },
+              { "label": "Incentivos flexibles (beneficios personalizados, recompensas ajustadas)", "value": 3 },
+              { "label": "IA aplicada a personas (herramientas para apoyar talento y clima laboral)", "value": 4 },
+              { "label": "Liderazgo con propósito (jefes inspiradores, cercanía, claridad de visión)", "value": 5 }
+            ]
+          },
+          {
+            "id": "P8_ESPERARIAS",
+            "type": "single_choice",
+            "required": true,
+            "question": "¿Qué esperarías de tu empresa para sentirte más comprometido en 2026?",
+            "programming": { "code": "RU" },
+            "options": [
+              { "label": "Mejores oportunidades de crecimiento y desarrollo profesional", "value": 1 },
+              { "label": "Mayor reconocimiento por mi trabajo", "value": 2 },
+              { "label": "Un salario y beneficios más competitivos", "value": 3 },
+              { "label": "Mayor equilibrio entre trabajo y vida personal", "value": 4 },
+              { "label": "Más flexibilidad (horarios, teletrabajo, permisos, etc.)", "value": 5 },
+              { "label": "Un liderazgo más cercano, claro y transparente", "value": 6 },
+              { "label": "Un ambiente laboral más colaborativo y positivo", "value": 7 },
+              { "label": "Más claridad en objetivos, roles y expectativas", "value": 8 },
+              { "label": "Herramientas tecnológicas que faciliten mi trabajo", "value": 9 },
+              { "label": "Incentivos flexibles y personalizados", "value": 10 }
+            ]
+          },
+          {
+            "id": "OUTRO_1",
+            "type": "screen",
+            "required": true,
+            "text": "Muchas gracias por sus respuestas."
+          }
+        ]
+      }
+    ]
+  }
+}
