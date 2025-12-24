@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
+import { initCustomDropdowns } from '../utils/customDropdowns';
 
 const SurveyComponent: React.FC = () => {
   const [survey, setSurvey] = useState<Model | null>(null);
@@ -73,6 +74,11 @@ const SurveyComponent: React.FC = () => {
       });
 
       setSurvey(surveyModel);
+      
+      // Inicializar dropdowns personalizados para evitar fullscreen picker en iOS
+      setTimeout(() => {
+        initCustomDropdowns();
+      }, 300);
     } catch (err) {
       console.error('Error al crear la encuesta:', err);
       setError('Error al cargar la encuesta: ' + String(err));
