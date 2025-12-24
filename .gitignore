@@ -49,6 +49,10 @@ dist-ssr
 .cache
 .parcel-cache
 
+# HubSpot integration files (local testing)
+iframe-embed.html
+HUBSPOT_IFRAME_INTEGRATION.md
+
 # OS
 Thumbs.db
 
