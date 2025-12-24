@@ -1,145 +1,118 @@
-# Survey App - Apprecio
+# Encuesta Apprecio 2026 - Vercel Pro
 
-Webapp en React basada en **SurveyJS** para la encuesta de motivación LATAM 2026 de Apprecio.
+Encuesta de motivación con branding Apprecio, desplegada en Vercel Pro con dominio personalizado.
 
-## 🚀 Características
+## 🚀 Deployment
 
-- ✅ Renderización de encuestas dinámicas desde JSON
-- ✅ Soporte para múltiples tipos de preguntas (texto, email, números, opciones, etc.)
-- ✅ Lógica condicional y filtros integrados
-- ✅ Validación de datos en tiempo real
-- ✅ Diseño responsive y moderno
-- ✅ Temas personalizados con Apprecio branding
-- ✅ Registro automático de respuestas
+Desplegado automáticamente en: **https://survey-apprecio.vercel.app/**
 
-## 📦 Requisitos
+Con dominio personalizado: **https://survey.tudominio.com** (configurar en Vercel)
 
-- Node.js 16+ 
-- npm o yarn
+## 🎨 Tech Stack
 
-## 🛠️ Instalación
+- **React 18.2.0** - UI Framework
+- **TypeScript 5.x** - Type safety
+- **Vite 5.4.21** - Build tool
+- **SurveyJS 1.12.17** - Survey library
+
+## 📦 Build
 
 ```bash
-cd /Users/ignaciomolina/Desktop/Survey
 npm install
+npm run build    # Compila a dist/
+npm run dev      # Dev server en localhost:5173
 ```
 
-## ▶️ Desarrollo
+## 🔗 Integración HubSpot
 
-Para iniciar el servidor de desarrollo:
+Para integrar en landing HubSpot, pega este código en un módulo Rich Text:
 
-```bash
-npm run dev
-```
+```html
+<div id="survey-container"></div>
 
-La aplicación se abrirá automáticamente en `http://localhost:5173`
+<link rel="stylesheet" href="https://survey-apprecio.vercel.app/assets/index-Dz6JIK8B.css">
+<script src="https://survey-apprecio.vercel.app/assets/index-C3eu4Liw.js"></script>
 
-## 🔨 Build para Producción
-
-```bash
-npm run build
-```
-
-Genera una versión optimizada en la carpeta `dist/`.
-
-Para previsualizar la build:
-
-```bash
-npm run preview
-```
-
-## 📁 Estructura del Proyecto
-
-```
-├── src/
-│   ├── components/
-│   │   └── SurveyComponent.tsx    # Componente principal de la encuesta
-│   ├── App.tsx                    # Aplicación principal
-│   ├── App.css                    # Estilos de la app
-│   ├── main.tsx                   # Punto de entrada
-│   └── index.css                  # Estilos globales
-├── survey.json                    # Definición de la encuesta
-├── survey-rules.ts                # Tipos TypeScript
-├── vite.config.ts                 # Configuración de Vite
-├── tsconfig.json                  # Configuración de TypeScript
-├── package.json                   # Dependencias
-└── index.html                     # HTML principal
-```
-
-## 🔧 Configuración
-
-### Personalizar la Encuesta
-
-Edita `survey.json` para:
-- Cambiar preguntas
-- Agregar/eliminar secciones
-- Modificar opciones de respuesta
-- Ajustar validaciones
-
-### Personalizar Estilos
-
-- **Colores globales**: Edita `:root` en `src/index.css`
-- **Componentes específicos**: Edita `src/App.css`
-- **Temas de SurveyJS**: Importa diferentes temas CSS (defaultV2.css, modern.css, etc.)
-
-### Manejo de Datos
-
-En `src/components/SurveyComponent.tsx`, el callback `onComplete` se ejecuta cuando se completa la encuesta:
-
-```typescript
-surveyModel.onComplete.add((result) => {
-  console.log('Datos de la encuesta:', result.data);
-  // Aquí puedes enviar a tu servidor
+<script>
+window.addEventListener('load', function() {
+  if (document.getElementById('root')) {
+    // Encuesta cargada y lista
+  }
 });
+</script>
 ```
 
-## 📊 Tipos de Preguntas Soportadas
+**Nota:** Reemplaza `survey-apprecio.vercel.app` con tu dominio personalizado.
 
-- `screen` - Pantalla de información
-- `text_email` - Campo de email
-- `number` - Campo numérico
-- `single_choice` - Selección única
-- `likert_1_5` - Escala Likert
-- `ranking` - Ranking de opciones
-- `ranked_multi_select` - Selección múltiple con ranking
+## 🎯 Características
 
-## 🚀 Deploy
+- ✅ 9 páginas de preguntas
+- ✅ Validación condicional (edad, situación laboral)
+- ✅ Webhook N8N para respuestas
+- ✅ Diseño responsive (mobile, tablet, desktop)
+- ✅ Branding Apprecio (#FA345E, Montserrat font)
+- ✅ Auto-deploy en cada push a GitHub
 
-### Netlify
+## 🔄 Workflow
+
 ```bash
+# 1. Hacer cambios locales
+# Editar src/components/SurveyComponent.tsx o src/App.css
+
+# 2. Compilar
 npm run build
-# Sube la carpeta 'dist/' a Netlify
+
+# 3. Push a GitHub
+git add -A
+git commit -m "Update survey"
+git push
+
+# 4. Vercel auto-deploya en ~30 segundos
 ```
 
-### Vercel
-```bash
-vercel
+## 📊 Respuestas
+
+Las respuestas se envían a: `https://n8n.openip.cl/webhook/survey-ebook`
+
+Ver en: https://n8n.openip.cl (Dashboard N8N)
+
+## 🌐 Dominio Personalizado
+
+1. En Vercel: Settings → Domains → Add
+2. Ingresar: `survey.tudominio.com`
+3. Copiar CNAME de Vercel
+4. En tu DNS: Crear record CNAME → `cname.vercel-dns.com.`
+5. Esperar 5-30 minutos para propagación
+
+## 📝 Archivos Principales
+
+```
+.
+├── index.html          # Entry point (generado por Vite)
+├── src/
+│   ├── App.tsx        # Componente principal
+│   ├── App.css        # Estilos Apprecio (sobrescribe SurveyJS)
+│   ├── main.tsx       # React entry
+│   └── components/
+│       └── SurveyComponent.tsx  # Configuración de encuesta
+├── dist/              # Compilado (generado por npm run build)
+├── vite.config.ts     # Configuración Vite
+├── package.json       # Dependencias
+└── vercel.json        # Configuración Vercel
 ```
 
-### GitHub Pages
-```bash
-npm run build
-# Configura GH Pages apuntando a 'dist/'
-```
+## 🎉 Listo para Producción
 
-## 📚 Recursos
-
-- [SurveyJS Documentation](https://surveyjs.io/form-library/documentation/overview)
-- [React Documentation](https://react.dev)
-- [Vite Guide](https://vitejs.dev/guide/)
-
-## 🤝 Contribuir
-
-Para agregar funcionalidades:
-
-1. Edita los archivos necesarios
-2. Prueba localmente con `npm run dev`
-3. Ejecuta `npm run build` para verificar la build
-
-## 📝 Licencia
-
-Este proyecto usa SurveyJS bajo licencia MIT.
+La encuesta está completamente funcional y lista para:
+- ✅ Vercel Pro deployment
+- ✅ Dominio personalizado
+- ✅ Integración HubSpot
+- ✅ Auto-respuestas a N8N
+- ✅ Mobile responsive
 
 ---
 
-Desarrollado para Apprecio © 2026
+**Últimas actualizaciones:**
+- Colores #FA345E (Apprecio) aplicados correctamente
+- Rutas relativas configuradas
+- Build optimizado para Vercel

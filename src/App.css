@@ -7,6 +7,20 @@
 /* Importar sobrescrituras personalizadas de body (minificado) */
 @import './body-override.min.css';
 
+/* ===== FUERZA MÁXIMA: Sobrescribir colores SurveyJS por defecto ===== */
+/* Esto debe estar AQUÍ, después de los imports, para asegurar máxima especificidad */
+.sd-root-modern,
+.sv-root-modern,
+.sd-root,
+.sv-root {
+  --sjs-primary-backcolor: #fa345e !important;
+  --sjs-primary-forecolor: #ffffff !important;
+  --sjs-primary-backcolor-hover: #e91e3f !important;
+  --sjs-primary-backcolor-light: #ffe6e8 !important;
+  --sjs-general-backcolor: #ffffff !important;
+  --sjs-general-forecolor: #1b1b1b !important;
+}
+
 /* ===== VARIABLES CSS PERSONALIZADAS ===== */
 :root {
   --primary-color: #fa345e;
