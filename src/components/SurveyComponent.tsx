@@ -18,6 +18,18 @@ const SurveyComponent: React.FC = () => {
         }
       });
       
+      // Configurar todos los dropdowns para que usen scroll nativo cuando hay muchas opciones
+      surveyModel.onGetQuestionTitleActions.add((_, options) => {
+        const question = options.question;
+        if (question.getType() === 'dropdown') {
+          const dropdown = question as any;
+          if (dropdown.popupModel) {
+            // canShrink permite que el popup se ajuste al espacio y muestre scroll
+            dropdown.popupModel.canShrink = true;
+          }
+        }
+      });
+      
       // Lógica condicional: Validar solo en página de filtro demográfico
       surveyModel.onCurrentPageChanging.add((sender, options) => {
         const currentPage = sender.currentPage;
