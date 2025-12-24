@@ -691,4 +691,14 @@
   .app-footer p {
     font-size: 0.8rem;
   }
+
+  /* Prevent iOS auto-zoom on input focus - SOLO inputs y selects */
+  :global(input[type='text']),
+  :global(input[type='email']),
+  :global(input[type='number']),
+  :global(select),
+  :global(.sd-input),
+  :global(.sd-dropdown) {
+    font-size: 16px !important;
+  }
 }

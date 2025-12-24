@@ -1,0 +1,24 @@
+apiVersion: 2
+type: module
+
+# Información del módulo
+display:
+  label: "Encuesta Apprecio - Motivación 2026"
+  description: "Encuesta interactiva de motivación y compromiso para Apprecio"
+  icon: "https://estudios.apprecio.com/hubfs/logo-cobrand-ebook-provokers.png"
+  categories:
+    - forms
+
+# Metadatos
+meta:
+  version: "1.0.0"
+  author: "Apprecio"
+
+# CSS global del módulo
+css:
+  - module.scss
+
+# JavaScript global
+javascript:
+  - module.js
+
