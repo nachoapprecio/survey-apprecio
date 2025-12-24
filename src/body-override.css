@@ -1,0 +1,18 @@
+/* Body Padding Override - Personalizar padding en mobile */
+
+/* Cambiar padding del body en mobile de calc(3*) a calc(1*) */
+.sd-root-modern--mobile .sd-body.sd-body--responsive,
+.sd-root-modern--mobile .sd-body.sd-body--static {
+  padding: calc(1 * (var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
+}
+
+/* Sobrescribir font size de mobile a 12px */
+.sd-root-modern.sd-root-modern--mobile,
+.sd-root-modern--mobile .sd-container-modern {
+  --sjs-mobile-font-editorfont-size: Max(12px, var(--sjs-font-editorfont-size, var(--sjs-font-size, 12px))) !important;
+}
+
+/* Reducir padding general del body responsive */
+.sd-body.sd-body--responsive {
+  padding: calc(1 * (var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
+}

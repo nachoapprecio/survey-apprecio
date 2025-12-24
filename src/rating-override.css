@@ -1,0 +1,60 @@
+/* Rating Override - Personalizaciones para mantener en una línea */
+
+/* Asegurar que el contenedor principal del rating NO wrappee */
+.sd-rating fieldset {
+  flex-wrap: nowrap !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Asegurar que incluso con wrappable class no wrappee */
+.sd-rating.sd-rating--wrappable fieldset {
+  flex-wrap: nowrap !important;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+/* Reducir tamaño de items para que quepan mejor */
+.sd-rating__item {
+  min-width: auto;
+  padding: calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) calc(1.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+}
+
+/* Para mobile - aún más comprimido */
+@media (max-width: 767px) {
+  .sd-rating fieldset {
+    gap: calc(0.2 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  }
+  
+  .sd-rating__item {
+    padding: calc(0.25 * (var(--sjs-base-unit, var(--base-unit, 8px)))) calc(0.75 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+    min-width: auto;
+    font-size: 0.6rem;
+  }
+  
+  .sd-rating__item-text,
+  .sd-rating__min-text,
+  .sd-rating__max-text {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .sd-rating fieldset {
+    gap: calc(0.1 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+  }
+  
+  .sd-rating__item {
+    padding: calc(0.2 * (var(--sjs-base-unit, var(--base-unit, 8px)))) calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+    height: auto;
+    min-width: auto;
+    font-size: 0.5rem;
+  }
+  
+  .sd-rating__item-text,
+  .sd-rating__min-text,
+  .sd-rating__max-text {
+    font-size: 0.55rem;
+  }
+}
+
