@@ -10,6 +10,14 @@ const SurveyComponent: React.FC = () => {
     try {
       const surveyModel = new Model(surveyConfig);
       
+      // Configurar dropdowns como popup en mobile para evitar pantalla completa
+      surveyModel.onOpenDropdownMenu.add((_sender, options) => {
+        // Forzar modo popup en dispositivos móviles (evita el picker nativo)
+        if (options.deviceType === 'mobile' || options.hasTouchScreen) {
+          options.menuType = 'popup';
+        }
+      });
+      
       // Lógica condicional: Validar solo en página de filtro demográfico
       surveyModel.onCurrentPageChanging.add((sender, options) => {
         const currentPage = sender.currentPage;
