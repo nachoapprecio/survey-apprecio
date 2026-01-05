@@ -372,7 +372,8 @@ const surveyConfig = {
           rateMin: 1,
           rateMax: 5,
           minRateDescription: "Nada entusiasmado(a)",
-          maxRateDescription: "Muy entusiasmado(a)"
+          maxRateDescription: "Muy entusiasmado(a)",
+          rateDescriptionLocation: "topBottom"
         },
         {
           type: "radiogroup",
@@ -396,7 +397,8 @@ const surveyConfig = {
           rateMin: 1,
           rateMax: 5,
           minRateDescription: "Nada probable",
-          maxRateDescription: "Muy probable"
+          maxRateDescription: "Muy probable",
+          rateDescriptionLocation: "topBottom"
         },
         {
           type: "rating",
@@ -407,7 +409,8 @@ const surveyConfig = {
           rateMin: 1,
           rateMax: 5,
           minRateDescription: "Nada conectado(a)",
-          maxRateDescription: "Muy conectado(a)"
+          maxRateDescription: "Muy conectado(a)",
+          rateDescriptionLocation: "topBottom"
         }
       ]
     },
@@ -456,7 +459,8 @@ const surveyConfig = {
           rateMin: 1,
           rateMax: 5,
           minRateDescription: "Totalmente en desacuerdo",
-          maxRateDescription: "Totalmente de acuerdo"
+          maxRateDescription: "Totalmente de acuerdo",
+          rateDescriptionLocation: "topBottom"
         }
       ]
     },
@@ -475,7 +479,8 @@ const surveyConfig = {
           rateMin: 1,
           rateMax: 5,
           minRateDescription: "Muy negativa",
-          maxRateDescription: "Muy positiva"
+          maxRateDescription: "Muy positiva",
+          rateDescriptionLocation: "topBottom"
         },
         {
           type: "radiogroup",
@@ -499,7 +504,8 @@ const surveyConfig = {
           rateMin: 1,
           rateMax: 5,
           minRateDescription: "Nada dispuesto(a)",
-          maxRateDescription: "Muy dispuesto(a)"
+          maxRateDescription: "Muy dispuesto(a)",
+          rateDescriptionLocation: "topBottom"
         }
       ]
     },
