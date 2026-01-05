@@ -2,45 +2,10 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta name="description" content="Encuesta de Motivación Apprecio 2026" />
     <meta name="theme-color" content="#FA345E" />
     <title>Encuesta Apprecio | Provokers 2026</title>
-    <script>
-      // Reset zoom on blur to prevent zoomed-in dropdown
-      document.addEventListener('DOMContentLoaded', function() {
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        
-        if (isMobile) {
-          // Function to reset zoom
-          const resetZoom = () => {
-            const viewport = document.querySelector('meta[name=viewport]');
-            if (viewport) {
-              // Temporarily disable zoom, then re-enable
-              viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-              setTimeout(() => {
-                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-              }, 300);
-            }
-          };
-          
-          // Apply to all inputs and textareas
-          document.addEventListener('blur', function(e) {
-            if (e.target.matches('input, textarea')) {
-              // Wait a bit for the keyboard to close
-              setTimeout(resetZoom, 100);
-            }
-          }, true);
-          
-          // Also reset zoom before opening select
-          document.addEventListener('focus', function(e) {
-            if (e.target.matches('select')) {
-              resetZoom();
-            }
-          }, true);
-        }
-      });
-    </script>
   </head>
   <body>
     <div id="root"></div>

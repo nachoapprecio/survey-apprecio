@@ -18,6 +18,23 @@ const SurveyComponent: React.FC = () => {
         }
       });
       
+      // Función para resetear zoom en iOS
+      const resetZoomInIOS = () => {
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isIOS && (window as any).visualViewport) {
+          const viewport = document.querySelector('meta[name=viewport]');
+          if (viewport) {
+            // Forzar reset de zoom
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+            
+            // Esperar a que se aplique y luego permitir zoom de nuevo
+            setTimeout(() => {
+              viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+            }, 50);
+          }
+        }
+      };
+      
       // Configurar todos los dropdowns para que usen scroll nativo cuando hay muchas opciones
       surveyModel.onGetQuestionTitleActions.add((_, options) => {
         const question = options.question;
@@ -26,6 +43,23 @@ const SurveyComponent: React.FC = () => {
           if (dropdown.popupModel) {
             // canShrink permite que el popup se ajuste al espacio y muestre scroll
             dropdown.popupModel.canShrink = true;
+            
+            // Interceptar la apertura del popup para resetear zoom ANTES
+            const originalOnShow = dropdown.popupModel.onShow;
+            dropdown.popupModel.onShow = () => {
+              // CRITICAL: Resetear zoom ANTES de mostrar el popup
+              resetZoomInIOS();
+              
+              // Esperar a que el zoom se resetee antes de posicionar el popup
+              setTimeout(() => {
+                if (originalOnShow) originalOnShow();
+                
+                // Recalcular posición después del reset
+                if (dropdown.popupModel && dropdown.popupModel.isVisible) {
+                  dropdown.popupModel.recalculatePosition(true);
+                }
+              }, 100);
+            };
             
             // Habilitar recálculo de posición cuando hay zoom/gestos táctiles
             let lastScale = (window as any).visualViewport?.scale || 1;
@@ -46,14 +80,12 @@ const SurveyComponent: React.FC = () => {
               }
             };
             
-            // Suscribirse a cambios en el viewport cuando el popup se abre
-            const originalOnShow = dropdown.popupModel.onShow;
-            dropdown.popupModel.onShow = () => {
+            // Suscribirse a cambios en el viewport cuando el popup está visible
+            const setupViewportListeners = () => {
               if ((window as any).visualViewport) {
                 (window as any).visualViewport.addEventListener('resize', handleViewportChange);
                 (window as any).visualViewport.addEventListener('scroll', handleViewportChange);
               }
-              if (originalOnShow) originalOnShow();
             };
             
             // Limpiar listeners cuando el popup se cierra
@@ -66,6 +98,9 @@ const SurveyComponent: React.FC = () => {
               clearTimeout(recalculateTimer);
               if (originalOnHide) originalOnHide();
             };
+            
+            // Configurar listeners después del show
+            setTimeout(setupViewportListeners, 150);
           }
         }
       });
