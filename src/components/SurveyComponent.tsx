@@ -70,6 +70,15 @@ const SurveyComponent: React.FC = () => {
         }
       });
       
+      // Configurar ranking para arrastre inmediato (sin longTap) - Fix para iOS
+      surveyModel.getAllQuestions().forEach((question: any) => {
+        if (question.getType() === 'ranking') {
+          // Deshabilitar longTap para que el drag sea inmediato al tocar el ícono
+          // Esto resuelve el conflicto con el scroll en iOS
+          question.longTap = false;
+        }
+      });
+      
       // Lógica condicional: Validar solo en página de filtro demográfico
       surveyModel.onCurrentPageChanging.add((sender, options) => {
         const currentPage = sender.currentPage;
