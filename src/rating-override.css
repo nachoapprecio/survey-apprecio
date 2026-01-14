@@ -7,9 +7,10 @@
   width: 100% !important;
 }
 
-/* Centrar el grupo de botones de rating */
+/* Centrar el grupo de botones de rating - VERTICAL en mobile */
 .sd-rating fieldset {
   display: flex !important;
+  flex-direction: column !important;
   justify-content: center !important;
   gap: 0.75rem !important;
   flex-wrap: wrap !important;
@@ -98,6 +99,11 @@
 
 /* Aumentar tamaño de círculos de rating en desktop */
 @media (min-width: 768px) {
+  /* Rating horizontal en desktop */
+  .sd-rating fieldset {
+    flex-direction: row !important;
+  }
+
   .sd-rating__item-text {
     width: calc(8 * (var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
     height: calc(8 * (var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
