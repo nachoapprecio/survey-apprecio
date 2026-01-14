@@ -348,6 +348,12 @@
   align-items: center !important;
 }
 
+/* OVERRIDE: Quitar width:max-content del contenedor de rating */
+:global(.sv-rating .sd-scrollable-container:not(.sd-scrollable-container--compact)) {
+  width: 100% !important;
+  overflow: visible !important;
+}
+
 /* Rating items en línea */
 :global(.sv-rating__item) {
   display: inline-flex !important;
