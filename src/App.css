@@ -7,6 +7,80 @@
 /* Importar sobrescrituras personalizadas de body (minificado) */
 @import './body-override.min.css';
 
+/* =========================
+   Overrides base SurveyJS
+   ========================= */
+
+/* Evita que el contenedor del módulo limite el ancho */
+#root {
+  width: 100%;
+}
+
+/* Quitar padding interno del input base */
+.sd-input {
+  padding: 0 !important;
+}
+
+/* Necesario para posicionamiento correcto del filtro del dropdown */
+.sd-dropdown__filter-string-input {
+  position: relative !important;
+}
+
+/* Alinear verticalmente el valor seleccionado en los dropdowns SurveyJS */
+.sd-input .sd-dropdown__value,
+.sd-dropdown__value {
+  display: flex !important;
+  align-items: center !important;
+  height: auto !important;
+  min-height: calc(1.5 * var(--sjs-font-size, 16px));
+  line-height: normal !important;
+  overflow: visible !important;
+}
+
+/* Evita que HubSpot convierta en flex el formulario de SurveyJS */
+#root .sd-root-modern__wrapper form {
+  display: block !important;
+  align-items: stretch !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
+}
+
+/* Asegura el layout base */
+form fieldset {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: none !important;
+  font-size: 1rem;
+}
+
+@media only screen and (min-width: 992px) {
+  form fieldset {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+  }
+}
+
+/* FIX: eliminar el espacio que deja el hint-suffix hidden */
+#root .sd-dropdown__hint-suffix span[style*="visibility: hidden"] {
+  display: none !important;
+}
+
+/* Blindaje: si el contenedor igual queda con ancho, colapsarlo */
+#root .sd-dropdown__hint-suffix {
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Y por si el layout del value reserva espacio para hints */
+#root .sd-dropdown__value {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
 /* ===== FUERZA MÁXIMA: Sobrescribir colores SurveyJS por defecto ===== */
 /* Esto debe estar AQUÍ, después de los imports, para asegurar máxima especificidad */
 .sd-root-modern,
