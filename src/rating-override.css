@@ -38,6 +38,23 @@
   border: none !important;
 }
 
+/* Override para string-viewer dentro de rating items - mostrar texto completo */
+.sd-rating--wrappable .sd-rating__item-text .sv-string-viewer,
+.sd-rating__item-text .sv-string-viewer {
+  max-width: none !important;
+  overflow: visible !important;
+  text-overflow: initial !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  display: block !important;
+}
+
+/* Asegurar que el contenedor de text inline esté centrado */
+.sd-rating__item-text .sv-string-viewer > * {
+  text-align: center !important;
+  width: 100% !important;
+}
+
 /* Posicionar labels de min/max fuera del flujo de botones */
 .sd-rating__label-text {
   white-space: normal !important;
