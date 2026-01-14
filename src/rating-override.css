@@ -44,8 +44,7 @@
   max-width: none !important;
   overflow: visible !important;
   text-overflow: initial !important;
-  white-space: normal !important;
-  word-break: break-word !important;
+  white-space: nowrap !important;
   display: block !important;
 }
 
@@ -69,6 +68,8 @@
   text-align: left !important;
   width: 100% !important;
   margin-bottom: 0.5rem !important;
+  white-space: nowrap !important;
+  word-break: normal !important;
 }
 
 .sd-rating__label-text.sd-rating__label--max {
@@ -76,6 +77,8 @@
   text-align: right !important;
   width: 100% !important;
   margin-top: 0.5rem !important;
+  white-space: nowrap !important;
+  word-break: normal !important;
 }
 
 /* Aumentar tamaño de círculos de rating en desktop */
