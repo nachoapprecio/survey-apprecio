@@ -4,22 +4,26 @@
 .sd-rating fieldset {
   display: flex !important;
   justify-content: center !important;
+  gap: 0.75rem !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
 }
 
-/* Borde visible en rating items - color #1b1b1b, 2px - TODOS LOS ESTADOS */
+/* Borde visible en rating items - color #1b1b1b, 1px (no 2px) */
 .sd-rating__item-text {
-  border: 2px solid #1b1b1b !important;
+  border: 1px solid #1b1b1b !important;
   min-width: 2.3125em !important;
   height: 2.3125em !important;
   aspect-ratio: 1 / 1 !important;
   box-sizing: border-box !important;
+  padding: 0.25rem !important;
 }
 
 /* Mantener borde en estado seleccionado/activo/hover */
 .sd-rating__item--selected .sd-rating__item-text,
 .sd-rating__item-text:hover,
 .sd-rating__item-text:focus {
-  border: 2px solid #1b1b1b !important;
+  border: 1px solid #1b1b1b !important;
 }
 
 /* Aumentar tamaño de círculos de rating en desktop */

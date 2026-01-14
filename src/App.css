@@ -61,14 +61,6 @@ form fieldset {
   flex-wrap: wrap !important;
 }
 
-@media only screen and (min-width: 992px) {
-  /* Mantener override para rating en desktop también */
-  .sd-rating fieldset {
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-  }
-}
-
 /* FIX: eliminar el espacio que deja el hint-suffix hidden */
 #root .sd-dropdown__hint-suffix span[style*="visibility: hidden"] {
   display: none !important;
