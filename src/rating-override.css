@@ -1,5 +1,12 @@
 /* Rating Override - Personalizaciones optimizadas para mobile y desktop */
 
+/* Contenedor principal de rating - flex con labels arriba y abajo */
+.sd-rating {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
 /* Centrar el grupo de botones de rating */
 .sd-rating fieldset {
   display: flex !important;
@@ -7,11 +14,12 @@
   gap: 0.75rem !important;
   flex-wrap: wrap !important;
   align-items: center !important;
+  margin: 1rem 0 !important;
 }
 
-/* Borde visible en rating items - color #1b1b1b, 1px (no 2px) */
+/* Rating items sin borde - solo fondo y texto */
 .sd-rating__item-text {
-  border: 1px solid #1b1b1b !important;
+  border: none !important;
   min-width: 2.3125em !important;
   height: 2.3125em !important;
   aspect-ratio: 1 / 1 !important;
@@ -19,11 +27,31 @@
   padding: 0.25rem !important;
 }
 
-/* Mantener borde en estado seleccionado/activo/hover */
+/* Sin cambios de borde en estados - mantener limpio */
 .sd-rating__item--selected .sd-rating__item-text,
 .sd-rating__item-text:hover,
 .sd-rating__item-text:focus {
-  border: 1px solid #1b1b1b !important;
+  border: none !important;
+}
+
+/* Posicionar labels de min/max fuera del flujo de botones */
+.sd-rating__label-text {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.sd-rating__label-text.sd-rating__label--min {
+  order: -1 !important;
+  text-align: left !important;
+  width: 100% !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.sd-rating__label-text.sd-rating__label--max {
+  order: 10 !important;
+  text-align: right !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
 }
 
 /* Aumentar tamaño de círculos de rating en desktop */
