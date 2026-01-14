@@ -420,7 +420,7 @@ form fieldset {
 }
 
 /* Rating - Horizontal en desktop */
-:global(.sd-rating) {
+:global(.sd-rating fieldset) {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important;
