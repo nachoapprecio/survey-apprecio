@@ -25,6 +25,10 @@
   aspect-ratio: 1 / 1 !important;
   box-sizing: border-box !important;
   padding: 0.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 500 !important;
 }
 
 /* Sin cambios de borde en estados - mantener limpio */
@@ -38,6 +42,9 @@
 .sd-rating__label-text {
   white-space: normal !important;
   word-break: break-word !important;
+  overflow: visible !important;
+  text-overflow: initial !important;
+  max-width: none !important;
 }
 
 .sd-rating__label-text.sd-rating__label--min {
