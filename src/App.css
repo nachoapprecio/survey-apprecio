@@ -413,7 +413,7 @@ form fieldset {
 }
 
 /* Rating - Horizontal en desktop */
-:global(.sv-rating) {
+:global(.sd-rating) {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important;
@@ -423,13 +423,13 @@ form fieldset {
 }
 
 /* OVERRIDE: Quitar width:max-content del contenedor de rating */
-:global(.sv-rating .sd-scrollable-container:not(.sd-scrollable-container--compact)) {
+:global(.sd-rating .sd-scrollable-container:not(.sd-scrollable-container--compact)) {
   width: 100% !important;
   overflow: visible !important;
 }
 
 /* Rating items en línea */
-:global(.sv-rating__item) {
+:global(.sd-rating__item) {
   display: inline-flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -674,10 +674,6 @@ form fieldset {
     padding: 0.6rem;
     margin-bottom: 0.4rem;
     font-size: 0.9rem;
-  }
-
-  :global(.sv-string-viewer) {
-    font-size: 11px;
   }
 
   :global(.sv-progress__bar) {

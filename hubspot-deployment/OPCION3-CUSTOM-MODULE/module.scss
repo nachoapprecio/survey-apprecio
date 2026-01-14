@@ -62,7 +62,7 @@
 }
 
 /* Rating */
-:global(.sv-rating) {
+:global(.sd-rating) {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important;
@@ -72,12 +72,12 @@
 }
 
 /* OVERRIDE: Quitar width:max-content del contenedor de rating */
-:global(.sv-rating .sd-scrollable-container:not(.sd-scrollable-container--compact)) {
+:global(.sd-rating .sd-scrollable-container:not(.sd-scrollable-container--compact)) {
   width: 100% !important;
   overflow: visible !important;
 }
 
-:global(.sv-rating__item) {
+:global(.sd-rating__item) {
   display: inline-flex !important;
   flex-direction: column !important;
   align-items: center !important;
