@@ -63,20 +63,33 @@
   max-width: none !important;
 }
 
+/* Posicionar label mínimo en la esquina izquierda */
+.sd-rating.sd-rating--labels-diagonal fieldset .sd-rating__min-text {
+  position: absolute !important;
+  margin: 0 !important;
+  left: 30px !important;
+  top: 0 !important;
+  border: 0 !important;
+}
+
+/* Posicionar label máximo en la esquina derecha */
+.sd-rating.sd-rating--labels-diagonal fieldset .sd-rating__max-text {
+  position: absolute !important;
+  margin: 0 !important;
+  right: 30px !important;
+  bottom: 0 !important;
+  border: 0 !important;
+}
+
 .sd-rating__label-text.sd-rating__label--min {
   order: -1 !important;
   text-align: left !important;
-  max-width: calc(50% - 0.5rem) !important;
   margin-bottom: 0.5rem !important;
-  white-space: normal !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
 }
 
 .sd-rating__label-text.sd-rating__label--max {
   order: 10 !important;
   text-align: right !important;
-  max-width: calc(50% - 0.5rem) !important;
   margin-top: 0.5rem !important;
   white-space: normal !important;
   overflow: hidden !important;
