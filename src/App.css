@@ -56,14 +56,14 @@ form fieldset {
 }
 
 /* Override específico para radiogroup dentro de rating - siempre horizontal */
-.sd-rating form fieldset {
+.sd-rating fieldset {
   flex-direction: row !important;
   flex-wrap: wrap !important;
 }
 
 @media only screen and (min-width: 992px) {
   /* Mantener override para rating en desktop también */
-  .sd-rating form fieldset {
+  .sd-rating fieldset {
     flex-direction: row !important;
     flex-wrap: wrap !important;
   }

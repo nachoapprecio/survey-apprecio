@@ -1,13 +1,13 @@
 /* Rating Override - Personalizaciones optimizadas para mobile y desktop */
 
 /* Centrar el grupo de botones de rating */
-.sv-rating {
+.sd-rating fieldset {
   display: flex !important;
   justify-content: center !important;
 }
 
 /* Borde visible en rating items - color #1b1b1b, 2px - TODOS LOS ESTADOS */
-.sv-rating__item-text {
+.sd-rating__item-text {
   border: 2px solid #1b1b1b !important;
   min-width: 2.3125em !important;
   height: 2.3125em !important;
@@ -16,15 +16,15 @@
 }
 
 /* Mantener borde en estado seleccionado/activo/hover */
-.sv-rating__item--selected .sv-rating__item-text,
-.sv-rating__item-text:hover,
-.sv-rating__item-text:focus {
+.sd-rating__item--selected .sd-rating__item-text,
+.sd-rating__item-text:hover,
+.sd-rating__item-text:focus {
   border: 2px solid #1b1b1b !important;
 }
 
 /* Aumentar tamaño de círculos de rating en desktop */
 @media (min-width: 768px) {
-  .sv-rating__item-text {
+  .sd-rating__item-text {
     width: calc(8 * (var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
     height: calc(8 * (var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
     min-width: calc(8 * (var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
